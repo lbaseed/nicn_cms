@@ -50,7 +50,7 @@
             </li>
             
             <li class="nav-item">
-              <a class="nav-link <?php echo e(activeMenu('users')); ?>" href="<?php echo e(url('users')); ?>">
+              <a class="nav-link <?php echo e(activeMenu('users')); ?>" href="<?php echo e(url('settings')); ?>">
                 <i class="ni ni-key-25 text-primary"></i>
                 <span class="nav-link-text">Manage Users</span>
               </a>
