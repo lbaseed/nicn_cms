@@ -13,6 +13,7 @@ class Cases extends Model
         'case_id',
         'case_name',
         'case_subject',
+        'complaint_form',
         'claimant',
         'defendant',
         'filing_date',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\models\Cases;
 use App\models\CaseStages;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -56,8 +57,9 @@ class CaseController extends Controller
     public function edit($id)
     {
         $case = Cases::find($id);
+        $stageTypes = SettingsController::listCaseStagesTypes();
 
-        return view("editCase", ['case' => $case]);
+        return view("editCase", ['case' => $case, 'stageTypes' => $stageTypes]);
     }
 
     /**
@@ -123,7 +125,9 @@ class CaseController extends Controller
 
     public function addCaseForm()
     {
-        return view('addCase');
+        $complaintForms = SettingsController::listComplaintForms();
+        
+        return view('addCase', ['complaintForms' => $complaintForms]);
     }
 
     public function addCase(Request $fields)
@@ -137,6 +141,7 @@ class CaseController extends Controller
             'defendant' => 'required',
             'division' => 'required',
             'filing_date' => 'required',
+            'complaint_form' => 'reuired',
         ]);
 
         $insert = Cases::create([
@@ -148,9 +153,10 @@ class CaseController extends Controller
             'filing_date' => $fields["filing_date"],
             'current_stage' => "Fresh Filing",
             'division' => $fields["division"],
+            'complaint_form' => $fields['complaint_form'],
         ]);
 
-        //insert CAse Stage
+        //insert Case Stage
         $case_stage = CaseStages::create([
             'case_ref' => $insert->id,
             'case_id' => $insert->case_id,

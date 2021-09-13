@@ -288,15 +288,22 @@ unset($__errorArgs, $__bag); ?>
                                         <label for="adjournment" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Case Stage')); ?></label>
                             
                                         <div class="col-md-6">
-                                            <input id="adjournment" type="text" class="form-control <?php $__errorArgs = ['adjournment'];
+                                            
+                                            <select id="adjournment" type="text" class="form-control <?php $__errorArgs = ['adjournment'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="current_stage" value="<?php echo e($case->current_stage); ?>" required autocomplete="off" placeholder="for hearing">
-                            
+unset($__errorArgs, $__bag); ?>" name="current_stage" value="<?php echo e(old('adjournment')); ?>" required>
+                                                <option >Select New Case Stage</option>
+                                                <?php if(count($stageTypes)>0): ?>
+                                                    <?php $__currentLoopData = $stageTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($item->id); ?>"><?php echo e($item->stage_name); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                <?php endif; ?>
+                                            </select>
                                             <?php $__errorArgs = ['adjournment'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -323,7 +330,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="adjournment_date"  value="<?php echo e($case->adjournment_date); ?>" required autocomplete="off">
+unset($__errorArgs, $__bag); ?>" name="adjournment_date"  value="" placeholder="<?php echo e($case->adjournment_date); ?>" required autocomplete="off">
                             
                                             <?php $__errorArgs = ['adjournment_date'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -351,7 +358,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="comments" value="<?php echo e($case->comments); ?>" required autocomplete="off" placeholder="for hearing comments"><?php echo e($case->comments); ?></textarea>
+unset($__errorArgs, $__bag); ?>" name="comments" value="<?php echo e($case->comments); ?>" required autocomplete="off" placeholder="<?php echo e($case->comments); ?>"></textarea>
                             
                                             <?php $__errorArgs = ['comments'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

@@ -83,6 +83,27 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    {{-- Form of Complaint --}}
+                                    <div class="form-group row">
+                                        <label for="complaint_form" class="col-md-4 col-form-label text-md-right">{{ __('Form of Complaint') }}</label>
+                            
+                                        <div class="col-md-6">
+                                            <select id="complaint_form" type="text" class="form-control @error('complaint_form') is-invalid @enderror" name="complaint_form" value="{{ old('complaint_form') }}" required>
+                                                <option >Select complaint form</option>
+                                                @if (count($complaintForms)>0)
+                                                    @foreach ($complaintForms as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->complaint_form }}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                            
+                                            @error('complaint_form')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                     {{-- Claimant --}}
                                     <div class="form-group row">
                                         <label for="claimant" class="col-md-4 col-form-label text-md-right">{{ __('Claimant') }}</label>

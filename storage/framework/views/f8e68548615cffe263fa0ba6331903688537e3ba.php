@@ -143,6 +143,41 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
                                     
                                     <div class="form-group row">
+                                        <label for="complaint_form" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Form of Complaint')); ?></label>
+                            
+                                        <div class="col-md-6">
+                                            <select id="complaint_form" type="text" class="form-control <?php $__errorArgs = ['complaint_form'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" name="complaint_form" value="<?php echo e(old('complaint_form')); ?>" required>
+                                                <option >Select complaint form</option>
+                                                <?php if(count($complaintForms)>0): ?>
+                                                    <?php $__currentLoopData = $complaintForms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($item->id); ?>"><?php echo e($item->complaint_form); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                <?php endif; ?>
+                                            </select>
+                            
+                                            <?php $__errorArgs = ['complaint_form'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong><?php echo e($message); ?></strong>
+                                                </span>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
                                         <label for="claimant" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Claimant')); ?></label>
                             
                                         <div class="col-md-6">

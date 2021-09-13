@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CaseController;
+use App\Http\Controllers\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,5 +68,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get("/archive-case", [CaseController::class, 'archive']);
     Route::post("/archive-case", [CaseController::class, 'archiveUpdate']);
 
+// Settings //create complaint form // create stage routes
+    Route::get("/settings", [SettingsController::class, 'index']);
+
+    Route::post("/create-complaint-form", [SettingsController::class, 'createComplaintForm']);
+    Route::post("/create-stage", [SettingsController::class, 'createCaseStage']);
 
 });

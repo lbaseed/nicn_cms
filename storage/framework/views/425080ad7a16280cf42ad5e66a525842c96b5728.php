@@ -1,3 +1,4 @@
+ 
 <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <!-- Brand -->
@@ -18,13 +19,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link <?php echo e(activeMenu('case-form')); ?>" href="<?php echo e(url('/case-form')); ?>">
+              <a class="nav-link <?php echo e(activeMenu('case-form')); ?>" href="<?php echo e(url('case-form')); ?>">
                 <i class="ni ni-collection text-primary"></i>
                 <span class="nav-link-text">Add New Case</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link <?php echo e(activeMenu('cases')); ?>" href="<?php echo e(url('/cases')); ?>">
+              <a class="nav-link <?php echo e(activeMenu('cases')); ?>" href="<?php echo e(url('cases')); ?>">
                 <i class="ni ni-pin-3 text-primary"></i>
                 <span class="nav-link-text">View All Cases</span>
               </a>
@@ -42,20 +43,20 @@
                 </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link <?php echo e(activeMenu('user-profile')); ?>" href="#">
+              <a class="nav-link <?php echo e(activeMenu('user-profile')); ?>" href="<?php echo e(url('profile')); ?>">
                 <i class="ni ni-single-02 text-primary"></i>
                 <span class="nav-link-text">Profile</span>
               </a>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link <?php echo e(activeMenu('users')); ?>" href="#">
+              <a class="nav-link <?php echo e(activeMenu('users')); ?>" href="<?php echo e(url('users')); ?>">
                 <i class="ni ni-key-25 text-primary"></i>
                 <span class="nav-link-text">Manage Users</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link <?php echo e(activeMenu('settings')); ?>" href="#">
+              <a class="nav-link <?php echo e(activeMenu('settings')); ?>" href="<?php echo e(url('settings')); ?>">
                 <i class="ni ni-circle-08 text-primary"></i>
                 <span class="nav-link-text">Settings</span>
               </a>

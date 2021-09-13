@@ -160,8 +160,15 @@
                                         <label for="adjournment" class="col-md-4 col-form-label text-md-right">{{ __('Case Stage') }}</label>
                             
                                         <div class="col-md-6">
-                                            <input id="adjournment" type="text" class="form-control @error('adjournment') is-invalid @enderror" name="current_stage" value="{{ $case->current_stage }}" required autocomplete="off" placeholder="for hearing">
-                            
+                                            
+                                            <select id="adjournment" type="text" class="form-control @error('adjournment') is-invalid @enderror" name="current_stage" value="{{ old('adjournment') }}" required>
+                                                <option >Select New Case Stage</option>
+                                                @if (count($stageTypes)>0)
+                                                    @foreach ($stageTypes as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->stage_name }}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
                                             @error('adjournment')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -174,7 +181,7 @@
                                         <label for="adjournment_date" class="col-md-4 col-form-label text-md-right">{{ __('Case Adjournment Date') }}</label>
                             
                                         <div class="col-md-6">
-                                            <input id="adjournment_date" type="text" class="form-control datepicker @error('adjournment_date') is-invalid @enderror" name="adjournment_date"  value="{{ $case->adjournment_date }}" required autocomplete="off">
+                                            <input id="adjournment_date" type="text" class="form-control datepicker @error('adjournment_date') is-invalid @enderror" name="adjournment_date"  value="" placeholder="{{ $case->adjournment_date }}" required autocomplete="off">
                             
                                             @error('adjournment_date')
                                                 <span class="invalid-feedback" role="alert">
@@ -188,7 +195,7 @@
                                         <label for="comments" class="col-md-4 col-form-label text-md-right">{{ __('Adjournment Comments') }}</label>
                             
                                         <div class="col-md-6">
-                                            <textarea id="comments" type="comments" class="form-control @error('comments') is-invalid @enderror" name="comments" value="{{ $case->comments }}" required autocomplete="off" placeholder="for hearing comments">{{ $case->comments }}</textarea>
+                                            <textarea id="comments" type="comments" class="form-control @error('comments') is-invalid @enderror" name="comments" value="{{ $case->comments }}" required autocomplete="off" placeholder="{{ $case->comments }}"></textarea>
                             
                                             @error('comments')
                                                 <span class="invalid-feedback" role="alert">

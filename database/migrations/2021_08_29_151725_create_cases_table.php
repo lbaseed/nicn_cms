@@ -17,7 +17,8 @@ class CreateCasesTable extends Migration
             $table->id();
             $table->string('case_id');
             $table->string('case_name');
-            $table->string('case_type');
+            $table->string('case_subject');
+            $table->string('complaint_form');
             $table->string('claimant');
             $table->string('defendant');
             $table->date('filing_date');
