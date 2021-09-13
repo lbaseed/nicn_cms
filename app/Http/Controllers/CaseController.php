@@ -18,14 +18,14 @@ class CaseController extends Controller
      */
     public function index()
     {
-        $cases = Cases::orderBy('case_id','asc')->get();
+        $cases = Cases_nicn::orderBy('case_id','asc')->get();
 
         return view("viewCases", ['cases' => $cases,'division'=>'ALL']);
     }
 
     public function divisionCases(Request $div){
 
-        $div["division"] == "ALL" ? $cases = Cases::orderBy('case_id', 'asc')->get() : $cases = Cases::where('division', $div["division"])->orderBy('case_id','asc')->get();
+        $div["division"] == "ALL" ? $cases = Cases_nicn::orderBy('case_id', 'asc')->get() : $cases = Cases_nicn::where('division', $div["division"])->orderBy('case_id','asc')->get();
 
         return view("viewCases", ['cases' => $cases, 'division' => $div["division"]]);
     }
@@ -49,14 +49,14 @@ class CaseController extends Controller
      */
     public function show($id)
     {
-        $case = Cases::find($id);
+        $case = Cases_nicn::find($id);
         $caseStages = CaseStages::where('case_ref', $id)->orderBy('created_at','desc')->get();
 
         return view("viewCase", ['case' => $case, 'caseStages' => $caseStages]);
     }
     public function edit($id)
     {
-        $case = Cases::find($id);
+        $case = Cases_nicn::find($id);
         $stageTypes = SettingsController::listCaseStagesTypes();
 
         return view("editCase", ['case' => $case, 'stageTypes' => $stageTypes]);
@@ -82,7 +82,7 @@ class CaseController extends Controller
 
         ]);
 
-        $case = Cases::find($id);
+        $case = Cases_nicn::find($id);
 
         //keep status change record
         if($case->current_stage=='Fresh Filing'){
@@ -144,7 +144,7 @@ class CaseController extends Controller
             'complaint_form' => 'reuired',
         ]);
 
-        $insert = Cases::create([
+        $insert = Cases_nicn::create([
             'case_id' => strtoupper($fields["case_id"]),
             'case_name' => $fields["case_name"],
             'case_subject' => $fields["case_subject"],
@@ -171,7 +171,7 @@ class CaseController extends Controller
 
     public function searchCases(Request $field){
 
-        $cases = Cases::where('case_id', 'like', '%'.$field["param"].'%')
+        $cases = Cases_nicn::where('case_id', 'like', '%'.$field["param"].'%')
         ->orWhere('case_name', 'like', '%'.$field["param"].'%')
         ->orderBy('case_id', 'asc')
         ->get();
@@ -180,15 +180,14 @@ class CaseController extends Controller
     }
 
     public static function casesQty($division){
-        $numCases = Cases::where('division', $division)->count();
+        $numCases = Cases_nicn::where('division', $division)->count();
 
         return $numCases;
     }
 
     public static function casesReturn(){
-        $allCases = Cases::all();
-
-        return view('casesReturn', ['allCases'=>$allCases]);
+        
+        return view('casesReturn');
     }
     
     public function generate(Request $request){
@@ -287,14 +286,14 @@ class CaseController extends Controller
     // cases return preparation functions
     public static function casesBroughtForward($range){
 
-        $cases = Cases::where('assignment_date', '<', $range['start'])
+        $cases = Cases_nicn::where('assignment_date', '<', $range['start'])
             ->get();
 
         return $cases;
     }
 
     public function judgementDelivered($range){
-        $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
+        $cases = Cases_nicn::whereBetween('termination_date', [$range['start'], $range['end']])
         ->Where('current_stage', '=', 'Judgement Delivered')
         ->get();
 
@@ -302,7 +301,7 @@ class CaseController extends Controller
     }
 
     public function struckOut($range){
-        $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
+        $cases = Cases_nicn::whereBetween('termination_date', [$range['start'], $range['end']])
         ->Where('current_stage', '=', 'Struck Out')
         ->get();
 
@@ -310,7 +309,7 @@ class CaseController extends Controller
     }
 
     public function reAssigned($range){
-        $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
+        $cases = Cases_nicn::whereBetween('termination_date', [$range['start'], $range['end']])
         ->Where('current_stage', '=', 'Re-Assigned')
         ->get();
 
@@ -319,14 +318,14 @@ class CaseController extends Controller
 
     public function assignedCases($range){
 
-        $cases = Cases::whereBetween('assignment_date', [$range['start'], $range['end']])
+        $cases = Cases_nicn::whereBetween('assignment_date', [$range['start'], $range['end']])
         ->get();
 
         return $cases;
     }
 
     public function archivedCases($range){
-        $cases = Cases::where('termination_date', '<', $range["start"])
+        $cases = Cases_nicn::where('termination_date', '<', $range["start"])
             ->get();
 
             return $cases;
@@ -334,7 +333,7 @@ class CaseController extends Controller
     
     public function pendingCases($range){
 
-        $cases = Cases::where('current_stage', '<>', 'Judgement Delivered')
+        $cases = Cases_nicn::where('current_stage', '<>', 'Judgement Delivered')
             ->where('current_stage', '<>', 'Struck Out')
             ->where('current_stage', '<>', 'Re-Assigned')
             ->where('current_stage', '<>', 'Dismissed')

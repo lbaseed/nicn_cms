@@ -22,9 +22,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $gombeCases = Cases::where('division', 'GMB')->orderBy('case_id', 'ASC')->take(4)->get();
-        $bauchiCases = Cases::where('division', 'BAU')->orderBy('case_id', 'ASC')->take(4)->get();
-        $yolaCases = Cases::where('division', 'YL')->orderBy('case_id', 'ASC')->take(4)->get();
+        $gombeCases = Cases_nicn::where('division', 'GMB')->orderBy('case_id', 'ASC')->take(4)->get();
+        $bauchiCases = Cases_nicn::where('division', 'BAU')->orderBy('case_id', 'ASC')->take(4)->get();
+        $yolaCases = Cases_nicn::where('division', 'YL')->orderBy('case_id', 'ASC')->take(4)->get();
         
         // $cases = Cases::all();
         
