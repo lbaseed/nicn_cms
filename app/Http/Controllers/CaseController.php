@@ -20,7 +20,7 @@ class CaseController extends Controller
         $cases = Cases_nicn::orderBy('case_id','asc')->get();
 
         return view("viewCases", ['cases' => $cases,'division'=>'ALL']);
-    }App\Models\
+    }
 
     public function divisionCases(Request $div){
 
