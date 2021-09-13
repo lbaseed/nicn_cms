@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\SettingsController;
-use App\models\Cases;
+use App\Models\Cases;
 use Carbon\Carbon;
 
 class CaseController extends Controller

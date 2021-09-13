@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\models\Cases;
+use App\Models\Cases;
 
 class HomeController extends Controller
 {
