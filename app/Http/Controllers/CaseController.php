@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\models\Cases;
-use App\models\CaseStages;
-use App\Http\Controllers\SettingsController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\SettingsController;
+use App\models\Cases_nicn;
 use Carbon\Carbon;
 
 class CaseController extends Controller

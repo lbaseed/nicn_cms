@@ -13,7 +13,7 @@ class CreateCasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cases', function (Blueprint $table) {
+        Schema::create('cases_nicn', function (Blueprint $table) {
             $table->id();
             $table->string('case_id');
             $table->string('case_name');
