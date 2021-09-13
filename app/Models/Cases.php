@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cases extends Model
 {
     use HasFactory;
-    protected $table="cases";
+    protected $table="cases_nicn";
     protected $fillable = [
         'case_id',
         'case_name',

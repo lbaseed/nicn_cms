@@ -18,3 +18,4 @@ class CaseStages extends Model
         'new_stage_date',
     ];
 }
+ 
