@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 // Public Routes
 // Route::resource("rides", RidesController::class);
-Route::post("/register", [APIAuthController::class, 'register']);
+Route::post("/new-register", [APIAuthController::class, 'register']);
 Route::post("/login", [APIAuthController::class, 'login']);
 
 
