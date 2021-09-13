@@ -13,50 +13,50 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link <?php echo e(activeMenu('home')); ?> <?php echo e(activeMenu('/')); ?>" href="<?php echo e(url('/')); ?>">
+              <a class="nav-link " href="<?php echo e(url('/')); ?>">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link <?php echo e(activeMenu('case-form')); ?>" href="<?php echo e(url('case-form')); ?>">
+              <a class="nav-link " href="<?php echo e(url('case-form')); ?>">
                 <i class="ni ni-collection text-primary"></i>
                 <span class="nav-link-text">Add New Case</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link <?php echo e(activeMenu('cases')); ?>" href="<?php echo e(url('cases')); ?>">
+              <a class="nav-link" href="<?php echo e(url('cases')); ?>">
                 <i class="ni ni-pin-3 text-primary"></i>
                 <span class="nav-link-text">View All Cases</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link <?php echo e(activeMenu('archive-case')); ?>" href="<?php echo e(url('archive-case')); ?>">
+              <a class="nav-link" href="<?php echo e(url('archive-case')); ?>">
                 <i class="ni ni-briefcase-24  text-primary"></i>
                 <span class="nav-link-text">Archive Case</span>
               </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?php echo e(activeMenu('cases-return')); ?>" href="<?php echo e(url('cases-return')); ?>">
+                <a class="nav-link" href="<?php echo e(url('cases-return')); ?>">
                   <i class="ni ni-bullet-list-67 text-primary"></i>
                   <span class="nav-link-text">Cases Return</span>
                 </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link <?php echo e(activeMenu('user-profile')); ?>" href="<?php echo e(url('profile')); ?>">
+              <a class="nav-link " href="<?php echo e(url('profile')); ?>">
                 <i class="ni ni-single-02 text-primary"></i>
                 <span class="nav-link-text">Profile</span>
               </a>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link <?php echo e(activeMenu('users')); ?>" href="<?php echo e(url('settings')); ?>">
+              <a class="nav-link " href="<?php echo e(url('settings')); ?>">
                 <i class="ni ni-key-25 text-primary"></i>
                 <span class="nav-link-text">Manage Users</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link <?php echo e(activeMenu('settings')); ?>" href="<?php echo e(url('settings')); ?>">
+              <a class="nav-link " href="<?php echo e(url('settings')); ?>">
                 <i class="ni ni-circle-08 text-primary"></i>
                 <span class="nav-link-text">Settings</span>
               </a>
