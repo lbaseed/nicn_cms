@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cases extends Model
+class cases extends Model
 {
     use HasFactory;
-    protected $table="cases_nicn";
+    protected $table="cases";
     protected $fillable = [
         'case_id',
         'case_name',

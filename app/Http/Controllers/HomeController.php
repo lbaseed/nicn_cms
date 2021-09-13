@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\models\Cases_nicn;
+use App\models\Cases;
 
 class HomeController extends Controller
 {
@@ -22,9 +22,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $gombeCases = App\Models\Cases_nicn::where('division', 'GMB')->orderBy('case_id', 'ASC')->take(4)->get();
-        $bauchiCases = Cases_nicn::where('division', 'BAU')->orderBy('case_id', 'ASC')->take(4)->get();
-        $yolaCases = Cases_nicn::where('division', 'YL')->orderBy('case_id', 'ASC')->take(4)->get();
+        $gombeCases = cases::where('division', 'GMB')->orderBy('case_id', 'ASC')->take(4)->get();
+        $bauchiCases = cases::where('division', 'BAU')->orderBy('case_id', 'ASC')->take(4)->get();
+        $yolaCases = cases::where('division', 'YL')->orderBy('case_id', 'ASC')->take(4)->get();
         
         // $cases = Cases::all();
         

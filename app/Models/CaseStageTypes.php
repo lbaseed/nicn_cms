@@ -9,7 +9,7 @@ class CaseStageTypes extends Model
 {
     use HasFactory;
     protected $table="case_stage_types";
-   protected $fillable = [
+    protected $fillable = [
         'stage_name',
         'stage_type', //life cycle stage or termination stage
     ];
