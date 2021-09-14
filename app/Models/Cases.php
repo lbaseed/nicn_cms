@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class cases extends Model
+class Cases extends Model
 {
     use HasFactory;
     protected $table="cases";
@@ -24,6 +24,7 @@ class cases extends Model
         'division',
         'counsel',
         'current_stage',
-        'comment'
+        'comment',
+        'curr_user'
     ];
 }

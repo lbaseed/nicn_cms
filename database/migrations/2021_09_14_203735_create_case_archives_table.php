@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCaseStagesTable extends Migration
+class CreateCaseArchivesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateCaseStagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('case_stages', function (Blueprint $table) {
+        Schema::create('case_archives', function (Blueprint $table) {
             $table->id();
-            $table->integer('case_ref');
             $table->string('case_id');
-            $table->string('prev_stage')->nullable();
-            $table->date('prev_stage_date')->nullable();
-            $table->string('new_stage')->nullable();
-            $table->date('new_stage_date')->nullable();
-            $table->string('curr_user');
+            $table->string('termination_msg');
+            $table->date('termination_date');
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ class CreateCaseStagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('case_stages');
+        Schema::dropIfExists('case_archives');
     }
 }

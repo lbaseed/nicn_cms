@@ -16,6 +16,7 @@ class CaseStages extends Model
         'prev_stage_date',
         'new_stage',
         'new_stage_date',
+        'curr_user'
     ];
 }
  

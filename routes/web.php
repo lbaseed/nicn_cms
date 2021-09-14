@@ -73,5 +73,5 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post("/create-complaint-form", [SettingsController::class, 'createComplaintForm']);
     Route::post("/create-stage", [SettingsController::class, 'createCaseStage']);
-
+ 
 });

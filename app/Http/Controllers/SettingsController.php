@@ -102,7 +102,7 @@ class SettingsController extends Controller
         $forms = ComplaintForms::all();
 
         return $forms;
-    }
+    } 
 
     public function createCaseStage(Request $request){
 
