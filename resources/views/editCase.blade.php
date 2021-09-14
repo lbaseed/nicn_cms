@@ -195,7 +195,7 @@
                                         <label for="comments" class="col-md-4 col-form-label text-md-right">{{ __('Adjournment Comments') }}</label>
                             
                                         <div class="col-md-6">
-                                            <textarea id="comments" type="comments" class="form-control @error('comments') is-invalid @enderror" name="comments" value="{{ $case->comments }}" required autocomplete="off" placeholder="{{ $case->comments }}"></textarea>
+                                            <textarea id="comments" type="comments" class="form-control @error('comments') is-invalid @enderror" name="comment" value="{{ $case->comments }}" required autocomplete="off" placeholder="{{ $case->comments }}"></textarea>
                             
                                             @error('comments')
                                                 <span class="invalid-feedback" role="alert">

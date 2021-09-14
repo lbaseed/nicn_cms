@@ -24,6 +24,6 @@ class cases extends Model
         'division',
         'counsel',
         'current_stage',
-        'comments'
+        'comment'
     ];
 }

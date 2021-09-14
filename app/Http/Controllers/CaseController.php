@@ -166,7 +166,7 @@ class CaseController extends Controller
             'new_stage_date' => $insert->filing_date,
         ]);
 
-        return $insert ? redirect()->back()->withSuccess("Case Added Successfully") : redirect()->back()->withError("Failed to Add");
+        return $insert ? redirect()->back()->withSuccess("Case Filed Successfully") : redirect()->back()->withError("Failed to Add");
     }
 
     public function searchCases(Request $field){
