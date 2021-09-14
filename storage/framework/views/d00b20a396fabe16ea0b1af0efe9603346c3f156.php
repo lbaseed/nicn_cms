@@ -358,7 +358,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="comments" value="<?php echo e($case->comments); ?>" required autocomplete="off" placeholder="<?php echo e($case->comments); ?>"></textarea>
+unset($__errorArgs, $__bag); ?>" name="comment" required autocomplete="off" placeholder="<?php echo e($case->comment); ?>"></textarea>
                             
                                             <?php $__errorArgs = ['comments'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

@@ -108,7 +108,7 @@ class CaseController extends Controller
 
         $case->update($fields->all());
 
-        return $case ? redirect()->back()->withSuccess("Updated Successfully!") : redirect()->back()->withError("Failed to Update");
+        return $case ? redirect('/case/{$id}/edit')->withSuccess("Updated Successfully!") : redirect()->back()->withError("Failed to Update");
 
     }
 
