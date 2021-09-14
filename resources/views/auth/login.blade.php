@@ -23,10 +23,16 @@
 <body class="bg-default">
     <style>
 
-        html, body {margin: 0; height: 100%; overflow: hidden}
+        html, body {margin: 0; height: 100%; padding-top: 5rem overflow: hidden}
         @media (min-width: 992px)
         {
           .pt-lg-9, .py-lg-9 {
+              padding-top: 10rem !important;
+          }
+        }
+        @media (max-width: 992px)
+        {
+          .pt-md-9, .py-md-9 {
               padding-top: 20rem !important;
           }
         }
@@ -40,7 +46,7 @@
     <div class="main-content header py-5 pt-5 pt-sm-9 pt-lg-9">
     <!-- Header -->
     <!-- Page content -->
-    <div class="container mt--8 pb-5">
+    <div class="container mt-4 pb-5">
         <div class="row justify-content-center">
             <div class="col-lg-5 col-md-7">
                 <div class="card bg-secondary border-0 mb-0">
@@ -100,9 +106,7 @@
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary my-4">Sign in</button>
                                 </div>
-                                <div class="text-center mb-3">
-                                    <p class="text-muted">Don't Have an account? <a href="{{route('register')}}">Sign up</a></p>
-                                </div>                    
+                                                   
                             </form>
                         </div>
                     </div>

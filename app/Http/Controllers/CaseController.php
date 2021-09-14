@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cases;
+use App\Models\CaseStages;
 use Illuminate\Http\Request;
 use App\Http\Controllers\SettingsController;
-use App\Models\Cases;
 use Carbon\Carbon;
 
 class CaseController extends Controller
@@ -140,7 +141,7 @@ class CaseController extends Controller
             'defendant' => 'required',
             'division' => 'required',
             'filing_date' => 'required',
-            'complaint_form' => 'reuired',
+            'complaint_form' => 'required',
         ]);
 
         $insert = cases::create([

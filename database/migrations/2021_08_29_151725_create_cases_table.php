@@ -13,7 +13,7 @@ class CreateCasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cases_nicn', function (Blueprint $table) {
+        Schema::create('cases', function (Blueprint $table) {
             $table->id();
             $table->string('case_id');
             $table->string('case_name');
@@ -27,6 +27,7 @@ class CreateCasesTable extends Migration
             $table->date('adjournment_date')->nullable();
             $table->date('termination_date')->nullable();
             $table->string('current_stage')->nullable();
+            $table->string('division')->nullable();
             $table->text('comment')->nullable();
             $table->integer('counsel')->nullable();
             $table->timestamps();
