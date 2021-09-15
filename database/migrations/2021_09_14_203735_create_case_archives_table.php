@@ -19,6 +19,7 @@ class CreateCaseArchivesTable extends Migration
             $table->string('termination_msg');
             $table->date('termination_date');
             $table->string('comment')->nullable();
+            $table->string('archived_by');
             $table->timestamps();
         });
     }

@@ -179,7 +179,9 @@ class CaseController extends Controller
     }
 
     public static function casesQty($division){
-        $numCases = Cases::where('division', $division)->count();
+        $numCases = Cases::where('division', $division)
+        ->where('termination_date','=',null)
+        ->count();
 
         return $numCases;
     }
@@ -368,6 +370,7 @@ class CaseController extends Controller
             'termination_msg' => $request['termination_msg'],
             'termination_date' => $request['termination_date'],
             'comment' => $request['comment'],
+            'archived_by' => Auth::user()->file_number,
         ]);
 
         // updating case stage
@@ -378,6 +381,7 @@ class CaseController extends Controller
             'current_stage' => $request['termination_msg'],
             'termination_date' => $request['termination_date'],
             'comment' => $request['comment'],
+            'curr_user' => Auth::user()->file_number,
         ]);
 
         //update case changing log
@@ -390,6 +394,7 @@ class CaseController extends Controller
             'prev_stage_date' => $case->filing_date,
             'new_stage' => $request['termination_msg'],
             'new_stage_date' => $request['termination_date'],
+            'curr_user' => Auth::user()->file_number,
         ]);
 
             

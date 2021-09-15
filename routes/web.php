@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CaseController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,5 +74,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post("/create-complaint-form", [SettingsController::class, 'createComplaintForm']);
     Route::post("/create-stage", [SettingsController::class, 'createCaseStage']);
+
+// Manage Users Route
+    Route::get("/system-users", [UsersController::class, "index"]);
+    Route::post("/system-users", [UsersController::class, "store"]);
+    Route::get("/system-user/{id}", [UsersController::class, "show"]);
  
 });

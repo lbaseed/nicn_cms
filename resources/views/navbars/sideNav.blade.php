@@ -43,14 +43,17 @@
                 </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="{{ url('profile') }}">
+              <!--
+                {{ $myId = Auth::user()->id }}
+              -->
+              <a class="nav-link " href="{{ url("/system-user/{$myId}") }}">
                 <i class="ni ni-single-02 text-primary"></i>
                 <span class="nav-link-text">Profile</span>
               </a>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link " href="{{ url('settings') }}">
+              <a class="nav-link " href="{{ url('/system-users') }}">
                 <i class="ni ni-key-25 text-primary"></i>
                 <span class="nav-link-text">Manage Users</span>
               </a>

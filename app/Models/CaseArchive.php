@@ -13,6 +13,7 @@ class CaseArchive extends Model
         'case_id',
         'termination_msg',
         'termination_date',
-        'comment'
+        'comment',
+        'archived_by'
     ];
 }
