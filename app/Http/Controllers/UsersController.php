@@ -38,9 +38,9 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'file_number' =>'required',
+            'file_number' =>'required|string|unique:users,file_number',
             'name' =>'required',
-            'email' =>'required',
+            'email' =>'required|string|unique:users,email',
             'clrs' =>'required',
         ]);
 

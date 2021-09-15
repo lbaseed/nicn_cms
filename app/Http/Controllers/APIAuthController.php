@@ -15,13 +15,18 @@ class APIAuthController extends Controller
             'email' => 'required|string|unique:users,email',
             'phone' => 'required|string',
             'password' => 'required|string|confirmed',
+            'file_number' => 'required|string|unique:users,file_number',
+            'clrs' => 'required'
         ]);
 
         $user = User::create([
             'name' => $fields['name'],
             'email' => $fields['email'],
             'phone' => $fields['phone'],
-            'password' => bcrypt($fields['password'])
+            'password' => bcrypt($fields['password']),
+            'file_number' => $fields['file_number'],
+            'clrs' => $fields['clrs'],
+
         ]);
 
         $token = $user->createToken('ryderAppToken')->plainTextToken;
