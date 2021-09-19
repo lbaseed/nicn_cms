@@ -47,6 +47,8 @@ class APIAuthController extends Controller
         ];
     }
 
+    // Login user
+    
     public function login(Request $request){
         $fields = $request->validate([
             'email' => 'required|string',
