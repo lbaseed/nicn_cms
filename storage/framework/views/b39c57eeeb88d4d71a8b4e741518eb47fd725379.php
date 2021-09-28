@@ -1,3 +1,7 @@
+              <!--
+                <?php echo e($myId = Auth::user()->id); ?>
+
+              --> 
 <nav class="navbar navbar-top sticky-top navbar-expand navbar-dark bg-primary border-bottom">
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -42,11 +46,11 @@
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
-                <!--
+                
                 <span class="avatar avatar-sm rounded-circle">
-                  <img src=" //Auth::user()->avatar }}" alt=" //Auth::user()->name }}">
+                  <i class="ni ni-single-02"></i>
                 </span>
-              -->
+              
                 <div class="media-body  ml-2  d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold"><?php echo e(Auth::user()->name); ?></span>
                 </div>
@@ -56,14 +60,16 @@
               <div class="dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Welcome!</h6>
               </div>
-              <a href="#!" class="dropdown-item">
+              <a href="<?php echo e(url("/system-user/{$myId}")); ?>" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
               </a>
-              <a href="#!" class="dropdown-item">
-                <i class="ni ni-settings-gear-65"></i>
-                <span>Settings</span>
-              </a>
+              <?php if(Auth::user()->clrs==5): ?>
+                  <a href="<?php echo e(url("/settings")); ?>" class="dropdown-item">
+                    <i class="ni ni-settings-gear-65"></i>
+                    <span>Settings</span>
+                  </a>
+              <?php endif; ?>
               <a href="#!" class="dropdown-item">
                 <i class="ni ni-calendar-grid-58"></i>
                 <span>Activity</span>

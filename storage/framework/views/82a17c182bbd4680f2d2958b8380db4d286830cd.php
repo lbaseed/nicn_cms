@@ -69,6 +69,11 @@
 
     });
 
+    $("#testLink").click(function(){
+      event.preventDefault();
+      document.getElementById('quarter').submit();
+    });
+
     $(document).ready( function () {
       // $('#casesTable').DataTable({
       //   buttons: [

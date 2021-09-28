@@ -123,7 +123,7 @@
                                         <label for="assignment_date" class="col-md-4 col-form-label text-md-right">{{ __('Case Assignment Date') }}</label>
                             
                                         <div class="col-md-6">
-                                            <input id="assignment_date" type="text" class="form-control datepicker @error('assignment_date') is-invalid @enderror" name="assignment_date" value="{{ $case->assignment_date }}" {{ $case->assignment_date!=null ? 'disabled':'required' }}  autocomplete="off">
+                                            <input id="assignment_date" type="text" class="form-control datepicker @error('assignment_date') is-invalid @enderror" name="assignment_date" required value="{{ $case->assignment_date }}" {{ $case->assignment_date!=null ? 'disabled':'required' }}  autocomplete="off">
                             
                                             @error('assignment_date')
                                                 <span class="invalid-feedback" role="alert">
@@ -132,7 +132,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    {{-- COmmenecement date --}}
+                                    {{-- Commenecement date --}}
                                     <div class="form-group row">
                                         <label for="hearing_date" class="col-md-4 col-form-label text-md-right">{{ __('Case Commencement Date') }}</label>
                             
@@ -152,7 +152,7 @@
                             
                                         <div class="col-md-6">
                                             
-                                            <select id="adjournment" type="text" class="form-control @error('adjournment') is-invalid @enderror" name="current_stage" value="{{ old('adjournment') }}" required>
+                                            <select id="adjournment" type="text" class="form-control @error('adjournment') is-invalid @enderror" name="current_stage" value="{{ old('adjournment') }}">
                                                 <option >Select New Case Stage</option>
                                                 @if (count($stageTypes)>0)
                                                     @foreach ($stageTypes as $item)
@@ -172,7 +172,7 @@
                                         <label for="adjournment_date" class="col-md-4 col-form-label text-md-right">{{ __('Case Adjournment Date') }}</label>
                             
                                         <div class="col-md-6">
-                                            <input id="adjournment_date" type="text" class="form-control datepicker @error('adjournment_date') is-invalid @enderror" name="adjournment_date"  value="" placeholder="{{ $case->adjournment_date }}" required autocomplete="off">
+                                            <input id="adjournment_date" type="text" class="form-control datepicker @error('adjournment_date') is-invalid @enderror" name="adjournment_date"  value="" placeholder="{{ $case->adjournment_date }}" autocomplete="off">
                             
                                             @error('adjournment_date')
                                                 <span class="invalid-feedback" role="alert">
@@ -186,7 +186,7 @@
                                         <label for="comments" class="col-md-4 col-form-label text-md-right">{{ __('Adjournment Comments') }}</label>
                             
                                         <div class="col-md-6">
-                                            <textarea id="comments" type="comments" class="form-control @error('comments') is-invalid @enderror" name="comment" required autocomplete="off" placeholder="{{ $case->comment }}"></textarea>
+                                            <textarea id="comments" type="comments" class="form-control @error('comments') is-invalid @enderror" name="comment" autocomplete="off" placeholder="{{ $case->comment }}"></textarea>
                             
                                             @error('comments')
                                                 <span class="invalid-feedback" role="alert">

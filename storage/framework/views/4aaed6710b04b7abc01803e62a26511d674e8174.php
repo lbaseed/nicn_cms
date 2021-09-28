@@ -22,8 +22,13 @@
 
 <body>
   <!-- Sidenav -->
+  <?php if(Auth::user()->clrs == 5): ?>
   <?php echo $__env->make('navbars.sideNav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+  <?php endif; ?>
   
+  <?php if(Auth::user()->clrs == 2): ?>
+  <?php echo $__env->make('navbars.user_nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+  <?php endif; ?>
 
   <!-- Main content -->
   <div class="main-content" id="panel">

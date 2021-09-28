@@ -22,8 +22,13 @@
 
 <body>
   <!-- Sidenav -->
+  @if (Auth::user()->clrs == 5)
   @include('navbars.sideNav')
+  @endif
   
+  @if (Auth::user()->clrs == 2)
+  @include('navbars.user_nav')
+  @endif
 
   <!-- Main content -->
   <div class="main-content" id="panel">
