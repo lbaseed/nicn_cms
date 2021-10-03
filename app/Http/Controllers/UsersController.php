@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+
 
 
 class UsersController extends Controller
@@ -101,5 +105,46 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function editPassword(Request $request){
+
+        $cur_user = Auth::user()->file_number;
+        $user = User::where('file_number', $cur_user)->first();
+
+        //validate user input
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required',
+            'conf_new_password' => 'required',
+        ]);
+
+        // current password check
+        if(Hash::check($request['old_password'], $user->password)){
+            if($request['new_password'] == $request['conf_new_password']){
+                $update = User::where('file_number', $cur_user)->update([
+                    'password' => bcrypt($request['new_password'])
+                ]);
+
+                // message password update successful
+               return redirect()->back()->withSuccess("Password Changed Successfully");
+            }else{
+                // password mismatched
+            return redirect()->back()->withError("New and Confirm Password mis-matched!");
+
+            }
+        }else{
+            // wrong old password
+            return redirect()->back()->withError("Wrong old Password!");
+        }
+    
+       
+
+    }
+
+    public function changePassword(){
+
+        return view('auth.change_password');
+        
     }
 }

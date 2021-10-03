@@ -70,9 +70,9 @@
                     <span>Settings</span>
                   </a>
               <?php endif; ?>
-              <a href="#!" class="dropdown-item">
+              <a href="/change-password" class="dropdown-item">
                 <i class="ni ni-calendar-grid-58"></i>
-                <span>Activity</span>
+                <span>Change Password</span>
               </a>
               <a href="#!" class="dropdown-item">
                 <i class="ni ni-support-16"></i>
