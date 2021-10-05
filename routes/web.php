@@ -79,5 +79,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get("/system-users", [UsersController::class, "index"]);
     Route::post("/system-users", [UsersController::class, "store"]);
     Route::get("/system-user/{id}", [UsersController::class, "show"]);
+
+// change password
+Route::get("/change-password", [UsersController::class, "changePassword"]);
+Route::post("/edit-password", [UsersController::class, "editPassword"]);
+
  
 });

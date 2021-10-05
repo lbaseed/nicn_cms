@@ -64,6 +64,12 @@
                 <span class="nav-link-text">Settings</span>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/change-password">
+                <i class="ni ni-key-25 text-primary"></i>
+                <span class="nav-link-text">Change Password</span>
+              </a>
+            </li>
           </ul>
           <!-- Divider -->
           <hr class="my-3">
@@ -85,12 +91,7 @@
                 <span class="nav-link-text">Learn the System</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="" target="_blank">
-                <i class="ni ni-ui-04"></i>
-                <span class="nav-link-text">User Guide</span>
-              </a>
-            </li>
+            
             
             <li class="nav-item">
               <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
