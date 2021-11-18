@@ -21,7 +21,7 @@
                                         </div>
                                     @endif
 
-                                <form method="POST" action="/edit-password">
+                                <form method="POST" action="/change-password">
                                     @csrf
                                     
                                     {{-- {{ Auth::user()->file_number }} --}}
