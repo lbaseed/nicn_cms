@@ -79,7 +79,7 @@
                                         <li class="list-group-item d-flex justify-content-between align-items-start">
                                             <div class="ms-2 me-auto">
                                             <div class="font-weight-bold">[{{ $caseStage->prev_stage_date }}]</div>
-                                                Case Stage Changed from <b>{{ $caseStage->prev_stage }}</b> on <b>{{ $caseStage->prev_stage_date }}</b> to <b>{{ $caseStage->new_stage }}</b> on <b>{{ $caseStage->new_stage_date }}</b>
+                                                Case Stage Changed from <b>{{ $caseStage->prev_stage }}</b> on <b>{{ $caseStage->prev_stage_date }}</b> to <b>{{ $caseStage->new_stage }}</b> on <b>{{ $caseStage->new_stage_date }}</b> by <i> {{ $caseStage->curr_user }} </i>
                                             </div>
                                             <span class="badge bg-primary rounded-pill"></span>
                                         </li>
