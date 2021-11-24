@@ -89,7 +89,7 @@
                             
                                         <div class="col-md-6">
                                             <select id="complaint_form" type="text" class="form-control @error('complaint_form') is-invalid @enderror" name="complaint_form" value="{{ old('complaint_form') }}" required>
-                                                <option >Select complaint form</option>
+                                                <option value="">Select complaint form</option>
                                                 @if (count($complaintForms)>0)
                                                     @foreach ($complaintForms as $item)
                                                         <option value="{{ $item->id }}">{{ $item->complaint_form }}</option>

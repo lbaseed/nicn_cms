@@ -82,7 +82,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 // change password
 Route::get("/change-password", [UsersController::class, "changePassword"]);
-Route::post("/edit-password", [UsersController::class, "editPassword"]);
+Route::post("/change-password", [UsersController::class, "editPassword"]);
 
  
 });
