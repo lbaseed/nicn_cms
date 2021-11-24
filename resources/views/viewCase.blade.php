@@ -49,7 +49,7 @@
                                             </tr><tr>
                                                 <td><b>Current Stage</b></td> <td>{{ $case->current_stage }}</td>
                                             </tr><tr>
-                                                <td><b>Adjournment Date</b></td> <td>{{ $case->hearing_date }}</td>
+                                                <td><b>Adjournment Date</b></td> <td>{{ $case->adjournment_date }}</td>
                                             </tr><tr>
                                                 <td><b>Comments</b></td> <td>{{ $case->comment }}</td>
                                             </tr>
