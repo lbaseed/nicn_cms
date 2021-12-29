@@ -39,13 +39,13 @@
 
 <div>
     
-    {{-- <watermarkimage src="{{ asset('assets/img/nicn-logo.png') }}" alpha="0.2" size="100,100" /> --}}
+    
 
     <div class="head" style="margin-bottom: 15px; ">
         <div style="font-size: 16px;">NATIONAL JUDICIAL COUNCIL</div>
         <div>MONITORING COMMITTEE ON THE PERFORMANCE OF JUDICIAL OFFICERS</div>
         <div>OF SUPERIOR COURTS OF RECORD</div>
-        <div>QUARTERLY RETURN OF CASES FOR THE QUARTER: {{ $period }}</div>
+        <div>QUARTERLY RETURN OF CASES FOR THE QUARTER: <?php echo e($period); ?></div>
     </div>
     <table style="width: 100%; font-size: 10px; font-weight: bold; margin-bottom: 15px;">
         <tr>
@@ -91,17 +91,17 @@
                 
             <tr>
                 <td>Civil</td>
-                <td><b>{{ $items['broughtForward'] }} </b></td>
-                <td><b>{{ $items['assignedCases'] }} </b></td>
-                <td><b>{{ $items['totalCurrentCases'] }} </b></td>
-                <td><b>{{ $items['judgementDelivered'] }} </b></td>
-                <td><b>{{ $items['struckOut'] + $items['reAssigned'] }} </b></td>
+                <td><b><?php echo e($items['broughtForward']); ?> </b></td>
+                <td><b><?php echo e($items['assignedCases']); ?> </b></td>
+                <td><b><?php echo e($items['totalCurrentCases']); ?> </b></td>
+                <td><b><?php echo e($items['judgementDelivered']); ?> </b></td>
+                <td><b><?php echo e($items['struckOut'] + $items['reAssigned']); ?> </b></td>
                      
                 <td> - </td>
                 <td> - </td>
                         
-                <td><b>{{ $items['totalDisposedCases'] }} </b></td>
-                <td><b>{{ $items['totalCurrentCases'] - $items['totalDisposedCases'] }} </b></td>
+                <td><b><?php echo e($items['totalDisposedCases']); ?> </b></td>
+                <td><b><?php echo e($items['totalCurrentCases'] - $items['totalDisposedCases']); ?> </b></td>
                 <td> </td>
             </tr>
 
@@ -154,17 +154,17 @@
             </tr>
             <tr>
                 <td><b>Total</b></td>
-                <td><b>{{ $items['broughtForward'] }} </b></td>
-                <td><b>{{ $items['assignedCases'] }} </b></td>
-                <td><b>{{ $items['totalCurrentCases'] }} </b></td>
-                <td><b>{{ $items['judgementDelivered'] }} </b></td>
-                <td><b>{{ $items['struckOut'] + $items['reAssigned'] }} </b></td>
+                <td><b><?php echo e($items['broughtForward']); ?> </b></td>
+                <td><b><?php echo e($items['assignedCases']); ?> </b></td>
+                <td><b><?php echo e($items['totalCurrentCases']); ?> </b></td>
+                <td><b><?php echo e($items['judgementDelivered']); ?> </b></td>
+                <td><b><?php echo e($items['struckOut'] + $items['reAssigned']); ?> </b></td>
                      
                 <td> <b>-</b> </td>
                 <td> <b>-</b> </td>
                         
-                <td><b>{{ $items['totalDisposedCases'] }} </b></td>
-                <td><b>{{ $items['totalCurrentCases'] - $items['totalDisposedCases'] }} </b></td>
+                <td><b><?php echo e($items['totalDisposedCases']); ?> </b></td>
+                <td><b><?php echo e($items['totalCurrentCases'] - $items['totalDisposedCases']); ?> </b></td>
                 <td> <b>-</b> </td>
             </tr>
         
@@ -177,15 +177,15 @@
             <div style="float: left; width: 45%">
                 <p>NAME OF JUDGE: Hon. Justice Mustapha Tijjani</p>
                 <p>JUDGE</p>
-                <p style="width: 50%; float: left;">Signature:........................</p> <p>Date: {{ Date("d/m/Y") }}</p>
+                <p style="width: 50%; float: left;">Signature:........................</p> <p>Date: <?php echo e(Date("d/m/Y")); ?></p>
             </div>
 
             <div style="float: right; width: 45%">
                 <b>CONFIRMED BY ME: PRESIDENT</b>
                 <p>NAME:  Hon. Justice B. B. Kanyip  (Phd)</p>
                 <p>PRESIDENT</p>
-                <p style="width: 50%; float: left;">Signature:........................</p> <p>Date: {{ Date("d/m/Y") }}</p>
+                <p style="width: 50%; float: left;">Signature:........................</p> <p>Date: <?php echo e(Date("d/m/Y")); ?></p>
             </div>
     </div>
 
-</div>
+</div><?php /**PATH C:\www\laravel_projects\nicn_cms\resources\views/components/quarterly.blade.php ENDPATH**/ ?>
