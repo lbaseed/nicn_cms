@@ -341,7 +341,9 @@ class CaseController extends Controller
             ->where('current_stage', '<>', 'Dismissed')
             ->orwhere(function($query)  use($range){
                 $query->where('termination_date','>',$range["end"]);
-            })->orderBy('case_id','asc')
+            })
+            ->orderBy('filing_date','asc')
+            ->orderBy('case_id','asc')
             ->get();
 
         return $cases;
