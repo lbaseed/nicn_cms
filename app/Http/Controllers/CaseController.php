@@ -340,13 +340,12 @@ class CaseController extends Controller
             ->where('current_stage', '<>', 'Re-Assigned')
             ->where('current_stage', '<>', 'Dismissed')
             ->orwhere(function($query)  use($range){
-                $query->where('termination_date','>',$range["end"])
-                // ->orderBy('case_id','asc')
-                ;
+                $query->where('termination_date','>',$range["end"]);
             })
             // ->orderByRaw('SUBSTR(case_id, 3)')
             ->orderBy('division', 'asc')
             ->orderBy('filing_date', 'asc')
+            ->orderBy('case_id', 'asc')
             ->get();
 
         return $cases;
