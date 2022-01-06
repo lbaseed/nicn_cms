@@ -132,6 +132,7 @@
                                                 <th>Case Subject</th>
                                                 <th>Termination</th>
                                                 <th>Division</th>
+                                                <th>Termination Date</th>
                                             </tr>
                                        
                                         <tbody>    
@@ -145,6 +146,7 @@
                                                 <td>{{ $case->case_subject }}</td>
                                                 <td>{{ $case->division }}</td>
                                                 <td>{{ $case->current_stage }} </td>
+                                                <td>{{ $case->termination_date }} </td>
                                             </tr>
                                         
 
@@ -159,6 +161,7 @@
                                                 <th>Case Subject</th>
                                                 <th>Termination</th>
                                                 <th>Division</th>
+                                                <th>Termination Date</th>
                                             </tr>
                                         </tfoot>
                                     </table>
