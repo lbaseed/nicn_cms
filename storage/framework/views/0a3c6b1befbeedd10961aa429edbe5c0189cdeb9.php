@@ -190,6 +190,7 @@ unset($__errorArgs, $__bag); ?>
                                                 <th>Case Subject</th>
                                                 <th>Termination</th>
                                                 <th>Division</th>
+                                                <th>Termination Date</th>
                                             </tr>
                                        
                                         <tbody>    
@@ -203,6 +204,7 @@ unset($__errorArgs, $__bag); ?>
                                                 <td><?php echo e($case->case_subject); ?></td>
                                                 <td><?php echo e($case->division); ?></td>
                                                 <td><?php echo e($case->current_stage); ?> </td>
+                                                <td><?php echo e($case->termination_date); ?> </td>
                                             </tr>
                                         
 
@@ -217,6 +219,7 @@ unset($__errorArgs, $__bag); ?>
                                                 <th>Case Subject</th>
                                                 <th>Termination</th>
                                                 <th>Division</th>
+                                                <th>Termination Date</th>
                                             </tr>
                                         </tfoot>
                                     </table>
