@@ -66,7 +66,7 @@ Route::group(['middleware' => ['auth']], function () {
     // test pdf gen
     Route::post("/get-quarter", [CaseController::class, 'generate']);
     Route::get("/get-quarter", [CaseController::class, 'casesReturn']);
-
+ 
 // Archive Cases to completion
     Route::get("/archive-case", [CaseController::class, 'archive']);
     Route::post("/archive-case", [CaseController::class, 'archiveUpdate']);

@@ -74,6 +74,10 @@ class CaseController extends Controller
     public function update(Request $fields, $id)
     {
 
+        $fields->validate([
+            'current_stage' => 'required',
+            'adjournment_date' => 'required',
+        ]);
         $case = Cases::find($id);
 
         //keep status change record
@@ -99,6 +103,8 @@ class CaseController extends Controller
             ]);
         }
         
+
+        // update case information here
 
         $case->update($fields->all());
         $case->update([
@@ -193,6 +199,9 @@ class CaseController extends Controller
     
     public function generate(Request $request){
 
+        $request->validate([
+            'year' => 'required',
+        ]);
         
 
         $mpdf = new \Mpdf\Mpdf([
@@ -208,33 +217,35 @@ class CaseController extends Controller
         
         $qtText=NULL;
         $quarter = NULL;
+        $yr = $request->year;
+        $division = $request->division;
         switch($period){
             case 1:
-                $quarter = ['start'=> '2021-01-01','end'=> '2021-03-31'];
-                $qtText = "1st QUARTER ENDED: MARCH".Date("Y", strtotime($quarter["start"]) );
+                $quarter = ['start'=> "$yr-01-01",'end'=> "$yr-03-31"];
+                $qtText = "1st QUARTER ENDED: MARCH ".Date("Y", strtotime($quarter["start"]) );
             break;
             case 4:
-                $quarter = ['start'=> '2021-04-01','end'=> '2021-06-30'];
-                $qtText = "2nd QUARTER ENDED: JUNE".Date("Y", strtotime($quarter["start"]));
+                $quarter = ['start'=> "$yr-04-01",'end'=> "$yr-06-30"];
+                $qtText = "2nd QUARTER ENDED: JUNE ".Date("Y", strtotime($quarter["start"]));
             break;
             case 7:
-                $quarter = ['start'=> '2021-07-01','end'=> '2021-09-30'];
+                $quarter = ['start'=> "$yr-07-01",'end'=> "$yr-09-30"];
                 $qtText = "3rd QUARTER ENDED: SEPTEMBER ".Date("Y", strtotime($quarter["start"]));
             break;
             case 10:
-                $quarter = ['start'=> '2021-10-01','end'=> '2021-12-31'];
+                $quarter = ['start'=> "$yr-10-01",'end'=> "$yr-12-31"];
                 $qtText = "4th QUARTER ENDED: DECEMBER ".Date("Y", strtotime($quarter["start"]));
             break;
         }
         $fileName = "$qtText.pdf";
         if ($period) {
-            $assignedCases = self::assignedCases($quarter);
-            $broughtForward = self::casesBroughtForward($quarter);
-            $judgementDelivered = self::judgementDelivered($quarter);
-            $struckOut = self::struckOut($quarter);
-            $reAssigned = self::reAssigned($quarter);
-            $archived = self::archivedCases($quarter);
-            $pending = self::pendingCases($quarter);
+            $assignedCases = self::assignedCases($quarter, $division);
+            $broughtForward = self::casesBroughtForward($quarter, $division);
+            $judgementDelivered = self::judgementDelivered($quarter, $division);
+            $struckOut = self::struckOut($quarter, $division);
+            $reAssigned = self::reAssigned($quarter, $division);
+            $archived = self::archivedCases($quarter, $division);
+            $pending = self::pendingCases($quarter, $division);
 
             $quarterly = [
             'broughtForward' => count($broughtForward) - count($archived),
@@ -286,69 +297,137 @@ class CaseController extends Controller
     }
 
     // cases return preparation functions
-    public static function casesBroughtForward($range){
+    public static function casesBroughtForward($range, $division){
 
-        $cases = Cases::where('assignment_date', '<', $range['start'])
-            ->get();
-
-        return $cases;
-    }
-
-    public function judgementDelivered($range){
-        $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
-        ->Where('current_stage', '=', 'Judgement Delivered')
-        ->get();
-
-        return $cases;
-    }
-
-    public function struckOut($range){
-        $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
-        ->Where('current_stage', '=', 'Struck Out')
-        ->get();
-
-        return $cases;
-    }
-
-    public function reAssigned($range){
-        $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
-        ->Where('current_stage', '=', 'Re-Assigned')
-        ->get();
-
-        return $cases;
-    }
-
-    public function assignedCases($range){
-
-        $cases = Cases::whereBetween('assignment_date', [$range['start'], $range['end']])
-        ->get();
-
-        return $cases;
-    }
-
-    public function archivedCases($range){
-        $cases = Cases::where('termination_date', '<', $range["start"])
+        if($division){
+            $cases = Cases::where('assignment_date', '<', $range['start'])
+            ->where('division', $division)
             ->get();
 
             return $cases;
+        }else{
+            $cases = Cases::where('assignment_date', '<', $range['start'])
+            ->get();
+
+            return $cases;
+        }
+    }
+
+    public function judgementDelivered($range, $division){
+
+        if($division){
+            $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
+            ->Where('current_stage', '=', 'Judgement Delivered')
+            ->where('division', $division)
+            ->get();
+
+            return $cases;
+        }else{
+            $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
+            ->Where('current_stage', '=', 'Judgement Delivered')
+            ->get();
+
+            return $cases;
+        }
+    }
+
+    public function struckOut($range, $division){
+        if($division){
+            $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
+            ->Where('current_stage', '=', 'Struck Out')
+            ->where('division', $division)
+            ->get();
+
+            return $cases;
+        }else{
+            $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
+            ->Where('current_stage', '=', 'Struck Out')
+            ->get();
+
+            return $cases;
+        }
+    }
+
+    public function reAssigned($range, $division){
+        
+        if($division){
+            $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
+            ->Where('current_stage', '=', 'Re-Assigned')
+            ->where('division', $division)
+            ->get();
+
+            return $cases;
+        }else{
+            $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
+            ->Where('current_stage', '=', 'Re-Assigned')
+            ->get();
+
+            return $cases;
+        }
+    }
+
+    public function assignedCases($range, $division){
+
+        if($division){
+            $cases = Cases::whereBetween('assignment_date', [$range['start'], $range['end']])
+            ->where('division', $division)
+            ->get();
+
+            return $cases;
+        }else{
+            $cases = Cases::whereBetween('assignment_date', [$range['start'], $range['end']])
+            ->get();
+
+            return $cases;
+        }
+    }
+
+    public function archivedCases($range, $division){
+        
+        if($division){
+            $cases = Cases::where('termination_date', '<', $range["start"])
+            ->where('division', $division)
+            ->get();
+
+            return $cases;
+        }else{
+            $cases = Cases::where('termination_date', '<', $range["start"])
+            ->get();
+
+            return $cases;
+        }
     }
     
-    public function pendingCases($range){
+    public function pendingCases($range, $division){
 
-        $cases = Cases::where('current_stage', '<>', 'Judgement Delivered')
+        if($division){
+            $cases = Cases::where('division','=', $division)
             ->where('current_stage', '<>', 'Struck Out')
             ->where('current_stage', '<>', 'Re-Assigned')
             ->where('current_stage', '<>', 'Dismissed')
-            ->orwhere(function($query)  use($range){
-                $query->where('termination_date','>',$range["end"]);
-            })
-            // ->orderByRaw('SUBSTR(case_id, 3)')
+            ->where('current_stage', '<>', 'Judgement Delivered')
+            // ->orwhere(function($query)  use($range){
+            //     $query->where('termination_date','>',$range["end"]);
+            // })
+            ->orderBy('case_id', 'asc')
+            ->get();
+
+        return $cases;
+        }else{
+            $cases = Cases::where('current_stage', '<>', 'Judgement Delivered')
+            ->where('current_stage', '<>', 'Struck Out')
+            ->where('current_stage', '<>', 'Re-Assigned')
+            ->where('current_stage', '<>', 'Dismissed')
+            // ->orwhere(function($query)  use($range){
+            //     $query->where('termination_date','>',$range["end"]);
+            // })
             ->orderBy('division', 'asc')
             ->orderBy('filing_date', 'asc')
             ->orderBy('case_id', 'asc')
             ->get();
 
         return $cases;
+        }
 
     }
 

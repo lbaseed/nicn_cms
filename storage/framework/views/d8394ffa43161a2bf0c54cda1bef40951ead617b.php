@@ -1,5 +1,4 @@
-@extends('layouts.master')
-@section('content')
+<?php $__env->startSection('content'); ?>
 <main class="py-4">
     <div class="container">
         
@@ -8,11 +7,11 @@
     
                 <div class="col-md-12 col-sm-12">
                     <div class="card">
-                        <div class="card-header">{{ __('View All Cases') }} [{{ $division }} Div]</div>
+                        <div class="card-header"><?php echo e(__('View All Cases')); ?> [<?php echo e($division); ?> Div]</div>
                             <div class="card-body">
                                 <div class="col-md-6 mb-3">
                                     <form id="division-cases" action="/cases" method="POST">
-                                        @csrf
+                                        <?php echo csrf_field(); ?>
                                         <select id="division" type="text" class="form-control" name="division">
                                             <option value="">Select Division</option>
                                             <option value="ALL">All Divisions</option>
@@ -24,7 +23,7 @@
                                       </form>
                                     
                                 </div>
-                                @if (count($cases)>0)
+                                <?php if(count($cases)>0): ?>
                                 <div class="table-responsive">
                                     <table class="table table-hover" id="casesTable">
                                         <thead>
@@ -38,19 +37,19 @@
                                         </thead>
                                         <tbody>    
                                           
-                                        @foreach ($cases as $case)
+                                        <?php $__currentLoopData = $cases; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $case): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         
                                             <tr>
-                                                <td>{{ $loop->index + 1 }}</td>
-                                                <td><a href="/case/{{ $case->id }}"><b>{{ $case->case_id }}</b></a></td> 
-                                                <td>{{ $case->case_name }}</td>
-                                                <td>{{ $case->case_subject }}</td>
-                                                <td>{{ $case->division }}</td>
+                                                <td><?php echo e($loop->index + 1); ?></td>
+                                                <td><a href="/case/<?php echo e($case->id); ?>"><b><?php echo e($case->case_id); ?></b></a></td> 
+                                                <td><?php echo e($case->case_name); ?></td>
+                                                <td><?php echo e($case->case_subject); ?></td>
+                                                <td><?php echo e($case->division); ?></td>
                                             </tr>
                                         
 
                                           
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -63,9 +62,9 @@
                                         </tfoot>
                                     </table>
                                 </div>
-                                @else
+                                <?php else: ?>
                                   No Record Found  
-                                @endif
+                                <?php endif; ?>
                                
                             </div>
                         </div>
@@ -77,9 +76,11 @@
     </div>
       
 </main>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 
 
 
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /media/ceo/DATA/All_Git_repo/nicn_cms/resources/views/viewCases.blade.php ENDPATH**/ ?>
