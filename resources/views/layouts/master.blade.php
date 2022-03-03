@@ -102,6 +102,8 @@
 </script>
   <!-- Argon JS -->
   <script src="{{URL::to('assets/js/argon.js?v=1.2.0')}}"></script>
+
+  @yield('scripts')
 </body>
 
 </html>

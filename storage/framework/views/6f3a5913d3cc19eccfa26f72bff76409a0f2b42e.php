@@ -102,6 +102,8 @@
 </script>
   <!-- Argon JS -->
   <script src="<?php echo e(URL::to('assets/js/argon.js?v=1.2.0')); ?>"></script>
+
+  <?php echo $__env->yieldContent('scripts'); ?>
 </body>
 
 </html>

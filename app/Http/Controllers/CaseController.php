@@ -74,6 +74,10 @@ class CaseController extends Controller
     public function update(Request $fields, $id)
     {
 
+        $fields->validate([
+            'current_stage' => 'required',
+            'adjournment_date' => 'required',
+        ]);
         $case = Cases::find($id);
 
         //keep status change record
@@ -99,6 +103,8 @@ class CaseController extends Controller
             ]);
         }
         
+
+        // update case information here
 
         $case->update($fields->all());
         $case->update([
@@ -208,21 +214,22 @@ class CaseController extends Controller
         
         $qtText=NULL;
         $quarter = NULL;
+        $yr = date("Y");
         switch($period){
             case 1:
-                $quarter = ['start'=> '2021-01-01','end'=> '2021-03-31'];
-                $qtText = "1st QUARTER ENDED: MARCH".Date("Y", strtotime($quarter["start"]) );
+                $quarter = ['start'=> "$yr-01-01",'end'=> "$yr-03-31"];
+                $qtText = "1st QUARTER ENDED: MARCH ".Date("Y", strtotime($quarter["start"]) );
             break;
             case 4:
-                $quarter = ['start'=> '2021-04-01','end'=> '2021-06-30'];
-                $qtText = "2nd QUARTER ENDED: JUNE".Date("Y", strtotime($quarter["start"]));
+                $quarter = ['start'=> "$yr-04-01",'end'=> "$yr-06-30"];
+                $qtText = "2nd QUARTER ENDED: JUNE ".Date("Y", strtotime($quarter["start"]));
             break;
             case 7:
-                $quarter = ['start'=> '2021-07-01','end'=> '2021-09-30'];
+                $quarter = ['start'=> "$yr-07-01",'end'=> "$yr-09-30"];
                 $qtText = "3rd QUARTER ENDED: SEPTEMBER ".Date("Y", strtotime($quarter["start"]));
             break;
             case 10:
-                $quarter = ['start'=> '2021-10-01','end'=> '2021-12-31'];
+                $quarter = ['start'=> "$yr-10-01",'end'=> "$yr-12-31"];
                 $qtText = "4th QUARTER ENDED: DECEMBER ".Date("Y", strtotime($quarter["start"]));
             break;
         }

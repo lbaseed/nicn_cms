@@ -44,7 +44,7 @@
             <div style="font-size: 16px;">NATIONAL JUDICIAL COUNCIL</div>
             <div>MONITORING COMMITTEE ON THE PERFORMANCE OF JUDICIAL OFFICERS</div>
             <div>OF SUPERIOR COURTS OF RECORD</div>
-            <div>QUARTERLY RETURN OF CASES FOR THE QUARTER: {{ $period }}</div>
+            <div>QUARTERLY RETURN OF CASES FOR THE QUARTER: <?php echo e($period); ?></div>
         </div>
         <table style="width: 100%; font-size: 10px; font-weight: bold; margin-bottom: 15px;">
             <tr>
@@ -55,7 +55,8 @@
 
         <div class="head">
             RELATIVE AGES OF PENDING CASES <br>
-            AS AT {{ $period }}
+            AS AT <?php echo e($period); ?>
+
         </div>
     
         <table cellspacing='0' id="nicn_tbl">
@@ -85,18 +86,18 @@
             
             
            
-                @if (count($items)>0)
+                <?php if(count($items)>0): ?>
 
-                    @foreach ($items as $case)
+                    <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $case): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
-                            <td>{{ $loop->index +1 }}</td>
-                            <td>{{ $case->case_subject }}</td>
-                            <td>{{ $case->case_id }}</td>
-                            <td>{{ $case->filing_date }}</td>
-                            <td>{{ $case->assignment_date }}</td>
-                            <td>{{ $case->hearing_date }}</td>
+                            <td><?php echo e($loop->index +1); ?></td>
+                            <td><?php echo e($case->case_subject); ?></td>
+                            <td><?php echo e($case->case_id); ?></td>
+                            <td><?php echo e($case->filing_date); ?></td>
+                            <td><?php echo e($case->assignment_date); ?></td>
+                            <td><?php echo e($case->hearing_date); ?></td>
                             <td>
-                            @php
+                            <?php
                                 $hearingDate = Carbon\Carbon::parse($case->hearing_date); 
                                 $terminationDate = Carbon\Carbon::parse($case->termination_date);  
                                 $diff = $hearingDate->diffInDays($terminationDate);
@@ -105,27 +106,29 @@
                                 $day = ( ($diff%365) % 30);
                                 
                                 
-                            @endphp
-                            {{ $yr > 1 ? $yr.' Years' : $yr.' Year' }}
-                            {{ $mnth > 1 ? $mnth.' Months' : $mnth.' Month' }}
-                            {{ $day > 1 ? $day.' Days' : $day.' Day' }}    
+                            ?>
+                            <?php echo e($yr > 1 ? $yr.' Years' : $yr.' Year'); ?>
+
+                            <?php echo e($mnth > 1 ? $mnth.' Months' : $mnth.' Month'); ?>
+
+                            <?php echo e($day > 1 ? $day.' Days' : $day.' Day'); ?>    
                             </td>
                             
-                            <td>{{ $case->current_stage }}</td>
+                            <td><?php echo e($case->current_stage); ?></td>
                         </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     
-                @else
+                <?php else: ?>
                     No Record Found.
-                @endif
+                <?php endif; ?>
 
         </table>
     
-        <div style="width: 100%; text-align: center; margin-top: {{ count($items) <= 7 ? '10px':'150px' }}">
+        <div style="width: 100%; text-align: center; margin-top: <?php echo e(count($items) <= 7 ? '10px':'150px'); ?>">
             <div style="float: left; width: 45%">
                 <p>NAME OF JUDGE: Hon. Justice Mustapha Tijjani</p>
                 <p>JUDGE</p>
-                <p style="width: 50%; float: left;">Signature:........................</p> <p>Date: {{ Date("d/m/Y") }}</p>
+                <p style="width: 50%; float: left;">Signature:........................</p> <p>Date: <?php echo e(Date("d/m/Y")); ?></p>
             </div>
 
             <div style="float: right; width: 45%">
@@ -136,4 +139,4 @@
             </div>
         </div>
 
-</div>
+</div><?php /**PATH /media/ceo/DATA/All_Git_repo/nicn_cms/resources/views/components/ages.blade.php ENDPATH**/ ?>
