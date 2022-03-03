@@ -25,9 +25,10 @@
                                         <div class="col-md-6">
                                             <select id="division" type="text" class="form-control @error('division') is-invalid @enderror" name="division" {{ $clrs == 5 ? '':'disabled'}} value="{{ $case->division }}" required>
                                                 <option value="{{ $case->division }}">{{ $case->division }}</option>
-                                                <option value="BAU">BAU</option>
-                                                <option value="GMB">GMB</option>
-                                                <option value="YLA">YLA</option>
+                                                <option value="BAU">Bauchi</option>
+                                                <option value="GMB">Gombe</option>
+                                                <option value="YLA">Yola</option>
+                                                <option value="LA">Lagos</option>
                                             </select>
                                 
                                             @error('division')
@@ -156,7 +157,7 @@
                                         <div class="col-md-6">
                                             
                                             <select id="adjournment" type="text" class="form-control @error('adjournment') is-invalid @enderror" name="current_stage" value="{{ old('adjournment') }}">
-                                                <option >Select New Case Stage</option>
+                                                <option value="">Select New Case Stage</option>
                                                 <option value="other">Other</option>
                                                 @if (count($stageTypes)>0)
                                                     @foreach ($stageTypes as $item)

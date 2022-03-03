@@ -91,7 +91,7 @@
                     <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $case): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
                             <td><?php echo e($loop->index +1); ?></td>
-                            <td><?php echo e($case->case_subject); ?></td>
+                            <td><?php echo e(_('Employment')); ?></td>
                             <td><?php echo e($case->case_id); ?></td>
                             <td><?php echo e($case->filing_date); ?></td>
                             <td><?php echo e($case->assignment_date); ?></td>

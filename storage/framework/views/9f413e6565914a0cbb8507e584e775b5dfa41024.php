@@ -31,9 +31,10 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="division" <?php echo e($clrs == 5 ? '':'disabled'); ?> value="<?php echo e($case->division); ?>" required>
                                                 <option value="<?php echo e($case->division); ?>"><?php echo e($case->division); ?></option>
-                                                <option value="BAU">BAU</option>
-                                                <option value="GMB">GMB</option>
-                                                <option value="YLA">YLA</option>
+                                                <option value="BAU">Bauchi</option>
+                                                <option value="GMB">Gombe</option>
+                                                <option value="YLA">Yola</option>
+                                                <option value="LA">Lagos</option>
                                             </select>
                                 
                                             <?php $__errorArgs = ['division'];
@@ -288,7 +289,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="current_stage" value="<?php echo e(old('adjournment')); ?>">
-                                                <option >Select New Case Stage</option>
+                                                <option value="">Select New Case Stage</option>
                                                 <option value="other">Other</option>
                                                 <?php if(count($stageTypes)>0): ?>
                                                     <?php $__currentLoopData = $stageTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

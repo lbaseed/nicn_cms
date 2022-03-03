@@ -9,9 +9,31 @@
                     <div class="card">
                         <div class="card-header"><?php echo e(__('Quarterly Return off Cases')); ?> </div>
                                 <div class="card-body">
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-12 mb-3">
                                     <form id="quarter" action="/get-quarter" target="_blank" method="POST">
                                         <?php echo csrf_field(); ?>
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <select id="perid" type="text" class="form-control" name="division">
+                                                    <option value="">Select Division</option>
+                                                    <option value="">All Divisions</option>
+                                                    <option value="BAU">BAU</option>
+                                                    <option value="GMB">GMB</option>
+                                                    <option value="YLA">YLA</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
+                                                <select id="perid" type="text" class="form-control" required name="year">
+                                                    <option value="">Select Year</option>
+                                                    <option value="2021">2021</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2024">2024</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="form-group row">
                                             <div class="col-md-12">
                                                 <select id="perid" type="text" class="form-control" required name="period">

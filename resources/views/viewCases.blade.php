@@ -16,9 +16,10 @@
                                         <select id="division" type="text" class="form-control" name="division">
                                             <option value="">Select Division</option>
                                             <option value="ALL">All Divisions</option>
-                                            <option value="BAU">BAU</option>
-                                            <option value="GMB">GMB</option>
-                                            <option value="YL">YL</option>
+                                            <option value="BAU">Bauchi</option>
+                                            <option value="GMB">Gombe</option>
+                                            <option value="YL">Yola</option>
+                                            <option value="LA">Lagos</option>
                                         </select>
                                       </form>
                                     

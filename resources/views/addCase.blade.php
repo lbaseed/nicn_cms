@@ -29,9 +29,10 @@
                                         <div class="col-md-6">
                                             <select id="division" type="text" class="form-control @error('division') is-invalid @enderror" name="division" value="{{ old('division') }}" required>
                                                 <option >Select Division</option>
-                                                <option value="BAU">BAU</option>
-                                                <option value="GMB">GMB</option>
-                                                <option value="YL">YL</option>
+                                                <option value="BAU">Bauchi</option>
+                                                <option value="GMB">Gombe</option>
+                                                <option value="YL">Yola</option>
+                                                <option value="LA">Lagos</option>
                                             </select>
                             
                                             @error('division')

@@ -37,9 +37,10 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="division" value="<?php echo e(old('division')); ?>" required>
                                                 <option >Select Division</option>
-                                                <option value="BAU">BAU</option>
-                                                <option value="GMB">GMB</option>
-                                                <option value="YL">YL</option>
+                                                <option value="BAU">Bauchi</option>
+                                                <option value="GMB">Gombe</option>
+                                                <option value="YL">Yola</option>
+                                                <option value="LA">Lagos</option>
                                             </select>
                             
                                             <?php $__errorArgs = ['division'];

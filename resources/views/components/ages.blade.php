@@ -90,7 +90,7 @@
                     @foreach ($items as $case)
                         <tr>
                             <td>{{ $loop->index +1 }}</td>
-                            <td>{{ $case->case_subject }}</td>
+                            <td>{{ _('Employment') }}</td>
                             <td>{{ $case->case_id }}</td>
                             <td>{{ $case->filing_date }}</td>
                             <td>{{ $case->assignment_date }}</td>
