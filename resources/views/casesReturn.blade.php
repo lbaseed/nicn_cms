@@ -6,11 +6,11 @@
         <div class="row justify-content-center">
             <div class="col-lg-12 row">
 
-                <div class="col-md-6 col-sm-12">
+                <div class="col-sm-12 col-md-12">
                     <div class="card">
                         <div class="card-header">{{ __('Quarterly Return off Cases') }} </div>
-                                <div class="card-body">
-                                <div class="col-md-12 mb-3">
+                            <div class="card-body">
+                                <div class="col-md-6 mb-3">
                                     <form id="quarter" action="/get-quarter" target="_blank" method="POST">
                                         @csrf
                                         <div class="form-group row">
@@ -62,6 +62,39 @@
     
             </div>
         </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-12 row">
+
+                <div class="col-sm-12 col-md-12">
+                    <div class="card">
+                        <div class="card-header">{{ __('List of Past returnes') }} </div>
+                            <div class="card-body">
+                                <div class="col-md-12 mb-3">
+                                    
+                                    <div class="table-responsive">
+                                        <table class="table table-hover" id="casesTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>SN</th>
+                                                    <th>Year</th>
+                                                    <th>Quarter</th>
+                                                    <th>File</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                                
+                               
+                            </div>
+                        
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+
     </div>
       
 </main>
