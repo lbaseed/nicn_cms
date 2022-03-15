@@ -20,7 +20,11 @@ class CaseController extends Controller
      */
     public function index()
     {
-        $cases = Cases::orderBy('case_id','asc')->get();
+        $cases = Cases::where("current_stage", "<>", "Struck Out")
+        ->where("current_stage", "<>", "Judgement Delivered")
+        ->where("current_stage", "<>", "Re-Assigned")
+        ->where("current_stage", "<>", "Dismissed")
+        ->orderBy('case_id','asc')->get();
 
         return view("viewCases", ['cases' => $cases,'division'=>'ALL']);
     }
@@ -32,6 +36,7 @@ class CaseController extends Controller
         ->where("current_stage", "<>", "Judgement Delivered")
         ->where("current_stage", "<>", "Re-Assigned")
         ->where("current_stage", "<>", "Dismissed")
+        ->orderBy('case_id','asc')
         ->get() 
         : 
          $cases = Cases::where('division', $div["division"])
