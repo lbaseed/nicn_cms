@@ -174,7 +174,7 @@ unset($__errorArgs, $__bag); ?>
         
         <div class="row justify-content-center">
             <div class="col-lg-12 row">
-                <div class="col-md-12 col-sm-12">
+                <div class="col-lg-12 col-sm-12">
                     <div class="card">
                         <div class="card-header"><?php echo e(__('Archived Cases List')); ?></div>
                         <div class="card-body">

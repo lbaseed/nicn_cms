@@ -127,7 +127,7 @@
                                         <label for="assignment_date" class="col-md-4 col-form-label text-md-right">{{ __('Case Assignment Date') }}</label>
                             
                                         <div class="col-md-6">
-                                            <input id="assignment_date" type="text" class="form-control datepicker @error('assignment_date') is-invalid @enderror" name="assignment_date" {{ $clrs == 5 ? '':'disabled'}} value="{{ $case->assignment_date }}" {{ $case->assignment_date==null or $clrs == 5 ? '':'disabled' }}  autocomplete="off">
+                                            <input id="assignment_date" type="text" class="form-control datepicker @error('assignment_date') is-invalid @enderror" name="assignment_date" value="{{ $case->assignment_date }}" {{ $case->assignment_date==null or $clrs == 5 ? '':'disabled' }}  autocomplete="off">
                             
                                             @error('assignment_date')
                                                 <span class="invalid-feedback" role="alert">
