@@ -78,7 +78,31 @@
 </main>
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('scripts'); ?>
+<script src="<?php echo e(URL::to('js/jquery.dataTables.min.js')); ?>"></script>
+<script src="<?php echo e(URL::to('js/dataTables.bootstrap5.min.js')); ?>"></script>
+    <script>
+    $(document).ready( function () {
+        // $('#casesTable').DataTable({
+        //   buttons: [
+        //   'copy', 'excel', 'pdf'
+        //   ]
+        // });
 
+        var table = $('#casesTable').DataTable();
+
+    new $.fn.dataTable.Buttons( table, {
+        buttons: [
+            'copy', 'excel', 'pdf'
+        ]
+    } );
+
+    table.buttons().container()
+        .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
+            
+    });
+    </script>
+<?php $__env->stopSection(); ?>
 
 
 

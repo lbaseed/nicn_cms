@@ -124,17 +124,17 @@
                             @if (count($archived)>0)
                                 <div class="table-responsive">
                                     <table class="table table-hover" id="casesTable">
-                                     
+                                        <thead>
                                             <tr>
                                                 <th>SN</th>
                                                 <th>Case ID</th>
                                                 <th>Parties</th>
                                                 <th>Case Subject</th>
-                                                <th>Termination</th>
                                                 <th>Division</th>
+                                                <th>Termination</th>
                                                 <th>Termination Date</th>
                                             </tr>
-                                       
+                                        </thead>
                                         <tbody>    
                                           
                                         @foreach ($archived as $case)
@@ -159,8 +159,8 @@
                                                 <th>Case ID</th>
                                                 <th>Parties</th>
                                                 <th>Case Subject</th>
-                                                <th>Termination</th>
                                                 <th>Division</th>
+                                                <th>Termination</th>
                                                 <th>Termination Date</th>
                                             </tr>
                                         </tfoot>
@@ -178,7 +178,41 @@
 </main>
 @endsection
 
+@section('styling')
+    <link href="css/select2.min.css" rel="stylesheet" />
+@endsection
 
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{URL::to('js/jquery.dataTables.min.js')}}"></script>
+  <script src="{{URL::to('js/dataTables.bootstrap5.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('#case_id').select2();
+    });
+
+    $(document).ready( function () {
+        $('#casesTable').DataTable({
+          buttons: [
+          'copy', 'excel', 'pdf'
+          ]
+        });
+
+        var table = $('#casesTable').DataTable();
+
+    new $.fn.dataTable.Buttons( table, {
+        buttons: [
+            'copy', 'excel', 'pdf'
+        ]
+    } );
+
+    table.buttons().container()
+        .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
+            
+    });
+
+</script>
+@endsection
 
 
 

@@ -27,7 +27,19 @@ class CaseController extends Controller
 
     public function divisionCases(Request $div){
 
-        $div["division"] == "ALL" ? $cases = Cases::orderBy('case_id', 'asc')->get() : $cases = Cases::where('division', $div["division"])->orderBy('case_id','asc')->get();
+        $div["division"] == "ALL" ? 
+        $cases = Cases::where("current_stage", "<>", "Struck Out")
+        ->where("current_stage", "<>", "Judgement Delivered")
+        ->where("current_stage", "<>", "Re-Assigned")
+        ->where("current_stage", "<>", "Dismissed")
+        ->get() 
+        : 
+         $cases = Cases::where('division', $div["division"])
+        ->where("current_stage", "<>", "Struck Out")
+        ->where("current_stage", "<>", "Judgement Delivered")
+        ->where("current_stage", "<>", "Re-Assigned")
+        ->where("current_stage", "<>", "Dismissed")
+        ->orderBy('case_id','asc')->get();
 
         return view("viewCases", ['cases' => $cases, 'division' => $div["division"]]);
     }

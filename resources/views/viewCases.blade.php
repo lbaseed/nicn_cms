@@ -79,7 +79,31 @@
 </main>
 @endsection
 
+@section('scripts')
+<script src="{{URL::to('js/jquery.dataTables.min.js')}}"></script>
+<script src="{{URL::to('js/dataTables.bootstrap5.min.js')}}"></script>
+    <script>
+    $(document).ready( function () {
+        // $('#casesTable').DataTable({
+        //   buttons: [
+        //   'copy', 'excel', 'pdf'
+        //   ]
+        // });
 
+        var table = $('#casesTable').DataTable();
+
+    new $.fn.dataTable.Buttons( table, {
+        buttons: [
+            'copy', 'excel', 'pdf'
+        ]
+    } );
+
+    table.buttons().container()
+        .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
+            
+    });
+    </script>
+@endsection
 
 
 
