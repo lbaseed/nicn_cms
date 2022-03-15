@@ -258,16 +258,17 @@ class CaseController extends Controller
         if ($period) {
             $assignedCases = self::assignedCases($quarter, $division);
             $broughtForward = self::casesBroughtForward($quarter, $division);
-            $judgementDelivered = self::judgementDelivered($quarter, $division);
+            $judgementDelivered = $this->judgementDelivered($quarter, $division);
             $struckOut = self::struckOut($quarter, $division);
             $reAssigned = self::reAssigned($quarter, $division);
             $archived = self::archivedCases($quarter, $division);
             $pending = self::pendingCases($quarter, $division);
+            $dismissed = self::dismissed($quarter, $division);
 
             $quarterly = [
             'broughtForward' => count($broughtForward) - count($archived),
             'assignedCases' => count($assignedCases),
-            'totalCurrentCases' => count($broughtForward) - count($archived) + count($assignedCases),
+            'totalCurrentCases' => count($broughtForward) + count($assignedCases)  - count($archived) ,
             'judgementDelivered' => count($judgementDelivered),
             'struckOut' => count($struckOut),
             'reAssigned' => count($reAssigned),
@@ -293,7 +294,7 @@ class CaseController extends Controller
 
             // judgements delivered
 
-            $page2 = \View::make('components.judgment', ['items'=>$judgementDelivered, 'period' => $qtText]);
+            $page2 = \View::make('components.judgment', [ 'disposed' =>  ['judgements'=>$judgementDelivered, 'struckOut' => $struckOut, 'dismissed' => $dismissed, 'reassigned' => $reAssigned], 'period' => $qtText, ]);
             $page2->render();
             $mpdf->WriteHTML($page2);
 
@@ -359,6 +360,23 @@ class CaseController extends Controller
         }else{
             $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
             ->Where('current_stage', '=', 'Struck Out')
+            ->get();
+
+            return $cases;
+        }
+    }
+
+    public function dismissed($range, $division){
+        if($division){
+            $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
+            ->Where('current_stage', '=', 'Dismissed')
+            ->where('division', $division)
+            ->get();
+
+            return $cases;
+        }else{
+            $cases = Cases::whereBetween('termination_date', [$range['start'], $range['end']])
+            ->Where('current_stage', '=', 'Dismissed')
             ->get();
 
             return $cases;

@@ -80,45 +80,152 @@
                 <th>NO. OF WITNESSES</th>
                 <th>REMARKS</th>
             </tr>
-           @if (count($items)>0)
-                @foreach ($items as $case)
-                    <tr>
-                        <td>{{ $loop->index +1 }}</td>
-                        <td>{{ $case->case_subject }}</td>
-                        <td>{{ $case->case_id }}</td>
-                        <td>{{ $case->filing_date }}</td>
-                        <td>{{ $case->assignment_date }}</td>
-                        <td>{{ $case->hearing_date }}</td>
-                        <td>{{ $case->termination_date }}</td>
-                        <td> 
-                            @php
-                                $hearingDate = Carbon\Carbon::parse($case->hearing_date); 
-                                $terminationDate = Carbon\Carbon::parse($case->termination_date);  
-                                $diff = $hearingDate->diffInDays($terminationDate);
-                                $yr = ($diff-($diff%365))/365;
-                                $mnth = ( ($diff%365) - ( ($diff%365) % 30) ) / 30;
-                                $day = ( ($diff%365) % 30);
-                            @endphp
-                            {{ $yr > 1 ? $yr.' Years' : $yr.' Year' }}
-                            {{ $mnth > 1 ? $mnth.' Months' : $mnth.' Month' }}
-                            {{ $day > 1 ? $day.' Days' : $day.' Day'}}
-                        </td>
-                        <td> </td>
-                        <td> {{ $case->current_stage }}</td>
-                    </tr>
-                @endforeach
+           @if (count($disposed)>0)
+                {{-- loop through array of disposed cases [judgement, struckout, dismissed and struck out] --}}
+
+                    {{ $sn = 1 }}
+
+                        @if(count($disposed["judgements"]) > 0)
+                            @foreach ($disposed["judgements"] as $case)
+                            <tr>
+                                <td>{{ $sn }}</td>
+                                <td>Employment</td>
+                                <td>{{ $case->case_id }}</td>
+                                <td>{{ $case->filing_date }}</td>
+                                <td>{{ $case->assignment_date }}</td>
+                                <td>{{ $case->hearing_date }}</td>
+                                <td>{{ $case->termination_date }}</td>
+                                <td> 
+                                    @php
+                                        $hearingDate = Carbon\Carbon::parse($case->hearing_date); 
+                                        $terminationDate = Carbon\Carbon::parse($case->termination_date);  
+                                        $diff = $hearingDate->diffInDays($terminationDate);
+                                        $yr = ($diff-($diff%365))/365;
+                                        $mnth = ( ($diff%365) - ( ($diff%365) % 30) ) / 30;
+                                        $day = ( ($diff%365) % 30);
+                                    @endphp
+                                    {{ $yr > 1 ? $yr.' Years' : $yr.' Year' }}
+                                    {{ $mnth > 1 ? $mnth.' Months' : $mnth.' Month' }}
+                                    {{ $day > 1 ? $day.' Days' : $day.' Day'}}
+                                </td>
+                                <td> </td>
+                                <td> {{ $case->current_stage }}</td>
+                            </tr>
+                            {{ $sn++ }}
+                            @endforeach
+
+                        @endif
+                {{-- Struck Out Cases --}}
+                        @if(count($disposed["struckOut"]) > 0)
+                            @foreach ($disposed["struckOut"] as $case)
+                            <tr>
+                                <td>{{ $sn}}</td>
+                                <td>Employment</td>
+                                <td>{{ $case->case_id }}</td>
+                                <td>{{ $case->filing_date }}</td>
+                                <td>{{ $case->assignment_date }}</td>
+                                <td>{{ $case->hearing_date }}</td>
+                                <td>{{ $case->termination_date }}</td>
+                                <td> 
+                                    @php
+                                        $hearingDate = Carbon\Carbon::parse($case->hearing_date); 
+                                        $terminationDate = Carbon\Carbon::parse($case->termination_date);  
+                                        $diff = $hearingDate->diffInDays($terminationDate);
+                                        $yr = ($diff-($diff%365))/365;
+                                        $mnth = ( ($diff%365) - ( ($diff%365) % 30) ) / 30;
+                                        $day = ( ($diff%365) % 30);
+                                    @endphp
+                                    {{ $yr > 1 ? $yr.' Years' : $yr.' Year' }}
+                                    {{ $mnth > 1 ? $mnth.' Months' : $mnth.' Month' }}
+                                    {{ $day > 1 ? $day.' Days' : $day.' Day'}}
+                                </td>
+                                <td> </td>
+                                <td> {{ $case->current_stage }}</td>
+                            </tr>
+                            {{ $sn++ }}
+                            @endforeach
+
+                        @endif
+                {{-- Dismissed Cases --}}
+                        @if(count($disposed["dismissed"]) > 0)
+                            @foreach ($disposed["dismissed"] as $case)
+                            <tr>
+                                <td>{{ $sn}}</td>
+                                <td>Employment</td>
+                                <td>{{ $case->case_id }}</td>
+                                <td>{{ $case->filing_date }}</td>
+                                <td>{{ $case->assignment_date }}</td>
+                                <td>{{ $case->hearing_date }}</td>
+                                <td>{{ $case->termination_date }}</td>
+                                <td> 
+                                    @php
+                                        $hearingDate = Carbon\Carbon::parse($case->hearing_date); 
+                                        $terminationDate = Carbon\Carbon::parse($case->termination_date);  
+                                        $diff = $hearingDate->diffInDays($terminationDate);
+                                        $yr = ($diff-($diff%365))/365;
+                                        $mnth = ( ($diff%365) - ( ($diff%365) % 30) ) / 30;
+                                        $day = ( ($diff%365) % 30);
+                                    @endphp
+                                    {{ $yr > 1 ? $yr.' Years' : $yr.' Year' }}
+                                    {{ $mnth > 1 ? $mnth.' Months' : $mnth.' Month' }}
+                                    {{ $day > 1 ? $day.' Days' : $day.' Day'}}
+                                </td>
+                                <td> </td>
+                                <td> {{ $case->current_stage }}</td>
+                            </tr>
+
+                            {{ $sn++ }}
+                            @endforeach
+
+                        @endif
+                {{-- reassigned Cases --}}
+                        @if(count($disposed["reassigned"]) > 0)
+                            @foreach ($disposed["reassigned"] as $case)
+                            <tr>
+                                <td>{{ $sn }}</td>
+                                <td>Employment</td>
+                                <td>{{ $case->case_id }}</td>
+                                <td>{{ $case->filing_date }}</td>
+                                <td>{{ $case->assignment_date }}</td>
+                                <td>{{ $case->hearing_date }}</td>
+                                <td>{{ $case->termination_date }}</td>
+                                <td> 
+                                    @php
+                                        $hearingDate = Carbon\Carbon::parse($case->hearing_date); 
+                                        $terminationDate = Carbon\Carbon::parse($case->termination_date);  
+                                        $diff = $hearingDate->diffInDays($terminationDate);
+                                        $yr = ($diff-($diff%365))/365;
+                                        $mnth = ( ($diff%365) - ( ($diff%365) % 30) ) / 30;
+                                        $day = ( ($diff%365) % 30);
+                                    @endphp
+                                    {{ $yr > 1 ? $yr.' Years' : $yr.' Year' }}
+                                    {{ $mnth > 1 ? $mnth.' Months' : $mnth.' Month' }}
+                                    {{ $day > 1 ? $day.' Days' : $day.' Day'}}
+                                </td>
+                                <td> </td>
+                                <td> {{ $case->current_stage }}</td>
+                            </tr>
+
+                            {{ $sn++ }}
+                            @endforeach
+
+                        @endif
+                
             @else
                     <tr>
-                        <td colspan="10">No judgement Delivered in this Quarter</td>
+                        <td colspan="10">No disposed this quarter</td>
                     </tr>
            @endif
 
         
     </table>
-    <div style="page-break-inside:avoid !important; margin-top: {{ count($items) <= 7 ? '10px':'150px' }}">
-        <div>* Total Number of Cases Disposed off During the Quarter, Column 7 above = Column 4 + 5.</div>
-        <div>** Cases Pending at the end of the Quarter, Column 8 above = Column 3 minus column 7.</div>
 
+    @php
+        $items = count($disposed["judgements"]) + count($disposed["struckOut"]) + count($disposed["dismissed"]) + count($disposed["reassigned"]);
+    @endphp
+
+    <div style="page-break-inside:avoid !important; margin-top: {{ $items <= 7 ? '10px':'150px' }}">
+        
         <div style="width: 100%; text-align: center; margin-top: 20px">
                 <div style="float: left; width: 45%">
                     <p>NAME OF JUDGE: Hon. Justice Mustapha Tijjani</p>
