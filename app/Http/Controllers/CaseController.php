@@ -444,7 +444,7 @@ class CaseController extends Controller
             // ->orwhere(function($query)  use($range){
             //     $query->where('termination_date','>',$range["end"]);
             // })
-            ->orderBy('case_id', 'asc')
+            ->orderBy('filing_date', 'asc')
             ->get();
 
         return $cases;
@@ -456,9 +456,7 @@ class CaseController extends Controller
             // ->orwhere(function($query)  use($range){
             //     $query->where('termination_date','>',$range["end"]);
             // })
-            ->orderBy('division', 'asc')
             ->orderBy('filing_date', 'asc')
-            ->orderBy('case_id', 'asc')
             ->get();
 
         return $cases;
